@@ -30,6 +30,8 @@ public class CreateUser extends HttpServlet {
 		
 		try {
 			datastore.get(userKey);
+			// Means the user already exists.
+			resp.sendRedirect("/register.jsp?fail=true");
 		} catch (EntityNotFoundException e) {
 			Entity user = new Entity(userKey);
 			user.setProperty("userName", userName);

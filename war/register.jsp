@@ -44,6 +44,13 @@
 		</script>
 	</head>
 	<body>
+<%
+	if ( (request.getParameter("fail") != null) && request.getParameter("fail").equals("true") ) {
+%>
+	<h1 style="color:#BB0000">User ID already in use!</h1>
+<%
+	}
+%>
 	<form name="registerUser" action="/createUser" method="POST" onSubmit="return validateForm()">
 		<div>
 			<label for="userId">Login ID:</label>
@@ -61,7 +68,7 @@
 			<label for="email">E-mail:</label>
 			<input style="margin-left: 96px" type="text" name="email"/>
 			<br/>
-			<input type="submit" value="Create Fragment"/>
+			<input type="submit" value="Register"/>
 		</div>
 	</form>
 	</body>
