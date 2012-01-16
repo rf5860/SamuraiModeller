@@ -16,6 +16,18 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>CreateUser</servlet-name>
 		<servlet-class>samurai.CreateUser</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>LogoutUser</servlet-name>
+		<servlet-class>samurai.LogoutUser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutUser</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CreateUser</servlet-name>
+		<servlet-class>samurai.CreateUser</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/createUser</url-pattern>

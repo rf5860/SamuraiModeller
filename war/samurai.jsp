@@ -56,9 +56,15 @@
 			<input type="submit" value="Create Fragment"/>
 		</div>
 	</form>
+	<br/>
 <%
 	if ( session.getAttribute("user") == null ) {
-%>	<br/><p><a href="/login.jsp">Login</a> or <a href="/register.jsp">Sign Up</a> to claim fragments.</p>
+%>	
+	<p><a href="/login.jsp">Login</a> or <a href="/register.jsp">Sign Up</a> to claim fragments.</p>
+<%
+	} else {
+%>
+	<p><a href="/logout">Logout</a>.</p>
 <%
 	}
 %>
