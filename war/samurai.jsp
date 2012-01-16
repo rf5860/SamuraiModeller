@@ -58,7 +58,7 @@
 	</form>
 <%
 	if ( session.getAttribute("user") == null ) {
-%>	<br/><p><a href="/login">Login</a> or <a href="/register">Sign Up</a> to claim fragments.</p>
+%>	<br/><p><a href="/login.jsp">Login</a> or <a href="/register.jsp">Sign Up</a> to claim fragments.</p>
 <%
 	}
 %>
