@@ -31,7 +31,7 @@ public class CreateUser extends HttpServlet {
 		try {
 			datastore.get(userKey);
 		} catch (EntityNotFoundException e) {
-			Entity user = new Entity("User", userKey);
+			Entity user = new Entity(userKey);
 			user.setProperty("userName", userName);
 			user.setProperty("userId", userId);
 			user.setProperty("password", password);
