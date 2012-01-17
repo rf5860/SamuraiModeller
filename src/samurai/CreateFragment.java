@@ -1,16 +1,16 @@
 package samurai;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 
 @SuppressWarnings("serial")
 public class CreateFragment extends HttpServlet {
@@ -21,11 +21,9 @@ public class CreateFragment extends HttpServlet {
 		if (user != null) {
 			String fragmentName = req.getParameter("newFragment");
 			if ( Utility.notNullOrEmpty(fragmentName) ){			
-				Date date = new Date();
 				
 				Entity fragment = new Entity("Fragment");
 				fragment.setProperty("fragmentName", fragmentName);
-				fragment.setProperty("dateSeized", date);
 				
 				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 				datastore.put(fragment);
