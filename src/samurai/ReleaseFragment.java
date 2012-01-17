@@ -11,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 
 @SuppressWarnings("serial")
-public class CreateFragment extends HttpServlet {
-	private static final Logger log = Logger.getLogger(CreateFragment.class.getName());
+public class ReleaseFragment extends HttpServlet {
+	private static final Logger log = Logger.getLogger(ReleaseFragment.class.getName());
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String user = (String) req.getSession().getAttribute("user");
 		if (user != null) {
 			String fragmentName = req.getParameter("newFragment");
 			if ( Utility.notNullOrEmpty(fragmentName) ){			
-				Key fragmentKey = KeyFactory.createKey("Fragment", fragmentName);
-				Entity fragment = new Entity(fragmentKey);
+				
+				Entity fragment = new Entity("Fragment");
 				fragment.setProperty("fragmentName", fragmentName);
 				
 				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -36,7 +34,7 @@ public class CreateFragment extends HttpServlet {
 				resp.sendError(400, "Invalid fragment name supplied");
 			}	
 		} else {
-			// Only allow a logged in user to create new fragments.
+			// Only allow a logged in user to release fragments.
 			resp.sendRedirect("/samurai.jsp?fragment=no");
 		}
 	}
