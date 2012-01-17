@@ -14,6 +14,11 @@
 		<script type="text/javascript" src="scripts/validation.js"></script>
 	</head>
 	<body>
+<form name="inform" action="Send.cgi" method="get">
+<input type="hidden" name="A">
+<input type="hidden" name="B">
+<input type="hidden" name="C">
+</form>
 <%
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -29,23 +34,25 @@
 	</tr>
 <%
 	for (Entity fragment : fragments) {
-		%>
-		<tr>
-		<td width="25%"><%= fragment.getProperty("fragmentName") %></td><td width="25%">
-		<%
+%>
+	<tr>
+	<td width="25%"><%= fragment.getProperty("fragmentName") %></td>
+<%
 		if (fragment.getProperty("holder") == null) {
-		%>
-		Nobody</td>
-		<% } else { %>
-		<%= fragment.getProperty("holder") %></td>
-		<%
+%>
+		<td width="25%">Nobody</td>
+<% 		} else {
+%>
+		<td width="25%"><%= fragment.getProperty("holder") %></td>
+<%
 		}
-		%>
-		<td width="25%">500 hours</td><td width="25%"><input type="button" value="Release"/></td>
-		</tr>
-		<%
-		}
-		%>
+%>
+	<td width="25%">500 hours</td>
+	<td width="25%"><input type="button" value="Release"/></td>
+	</tr>
+<%
+	}
+%>
 	</table>
 	<br/>
 <%
