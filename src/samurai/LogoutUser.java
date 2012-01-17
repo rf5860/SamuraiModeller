@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LogoutUser extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		req.removeAttribute("user");
+		req.getSession().removeAttribute("user");
 		resp.sendRedirect("/samurai.jsp");
 	}
 }

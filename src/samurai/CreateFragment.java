@@ -19,7 +19,7 @@ public class CreateFragment extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		String fragmentName = req.getParameter("newFragment");
-		if ( notNullOrEmpty(fragmentName) ){			
+		if ( Utility.notNullOrEmpty(fragmentName) ){			
 			Date date = new Date();
 			
 			Entity fragment = new Entity("Fragment");
@@ -34,9 +34,5 @@ public class CreateFragment extends HttpServlet {
 			log.log(Level.INFO, "Attempt at creating null fragment");
 			resp.sendError(400, "Invalid fragment name supplied");
 		}
-	}
-	
-	protected static boolean notNullOrEmpty(String s) {
-		return (s != null) && (! (s.trim()).equals(""));
 	}
 }

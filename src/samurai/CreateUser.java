@@ -1,5 +1,6 @@
 package samurai;
 
+import com.google.appengine.api.datastore.ShortBlob;
 import com.google.appengine.api.datastore.DatastoreFailureException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -9,6 +10,8 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,12 +37,19 @@ public class CreateUser extends HttpServlet {
 			resp.sendRedirect("/register.jsp?fail=true");
 		} catch (EntityNotFoundException e) {
 			Entity user = new Entity(userKey);
-			user.setProperty("userName", userName);
-			user.setProperty("userId", userId);
-			user.setProperty("password", password);
-			user.setProperty("email", email);
-			datastore.put(user);
-			req.getSession().setAttribute("user", userId);
+			try {
+				byte[] pwdBytes = password.getBytes("UTF-8");
+				MessageDigest md = MessageDigest.getInstance("MD5");
+				byte[] hash = md.digest(pwdBytes);
+								
+				user.setProperty("userName", userName);
+				user.setProperty("userId", userId);
+				user.setProperty("password", new ShortBlob(hash));
+				user.setProperty("email", email);
+				datastore.put(user);
+				req.getSession().setAttribute("user", userId);
+				
+			} catch (NoSuchAlgorithmException noSuchAlgExc) {}
 		} catch (IllegalArgumentException e) {
 			log.log(Level.INFO, "Attempt at creating invalid user");
 			resp.sendError(400, "Invalid User Id");
