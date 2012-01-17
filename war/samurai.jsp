@@ -47,6 +47,9 @@
 		%>
 	</table>
 	<br/>
+<%
+if ( session.getAttribute("user")!= null ) {
+%>
 	<!--  Form to create a new fragment, which will be added to the list. -->
 	<form action="/createFragment" method="POST">
 		<div>
@@ -57,14 +60,11 @@
 		</div>
 	</form>
 	<br/>
-<%
-	if ( session.getAttribute("user") == null ) {
-%>	
-	<p><a href="/login.jsp">Login</a> or <a href="/register.jsp">Sign Up</a> to claim fragments.</p>
+	<p><a href="/logout">Logout</a></p>
 <%
 	} else {
 %>
-	<p><a href="/logout">Logout</a></p>
+	<p><a href="/login.jsp">Login</a> or <a href="/register.jsp">Sign Up</a> to claim fragments.</p>
 <%
 	}
 %>
