@@ -52,7 +52,7 @@
 if ( session.getAttribute("user")!= null ) {
 %>
 	<!--  Form to create a new fragment, which will be added to the list. -->
-	<form action="/createFragment" method="POST">
+	<form action="/createFragment" name="createFragment" method="POST" onSubmit="return validateFragmentForm()">
 		<div>
 			<label for="newFragment">New Fragment:</label>
 			<input type="text" style="margin-left: 19px" name="newFragment"/>

@@ -1,7 +1,17 @@
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+String.prototype.ltrim = function() {
+	return this.replace(/^\s+/,"");
+}
+String.prototype.rtrim = function() {
+	return this.replace(/\s+$/,"");
+}
+
 function validate_required(field, msg)
 {
 	with (field) {
-		if ( (value==null) || (value=="") ) {
+		if ( (value == null) || (value.trim() == "") ) {
 			alert(msg);
 			return false;
 		} else {
@@ -10,7 +20,7 @@ function validate_required(field, msg)
 	}
 }
 
-function validateForm()
+function validateRegisterForm()
 {
 	with (document.forms["registerUser"]) {
 		if ( validate_required(userId, "Login ID must be supplied.") == false ) {
@@ -32,6 +42,16 @@ function validateForm()
 			alert("Your password and confirmation password do not match.");
 			cpassword.focus();
 			return false; 
+		}
+	}
+}
+
+function validateFragmentForm()
+{
+	with (document.forms["createFragment"]) {
+		if ( validate_required(newFragment, "Fragment name must be supplied") == false ) {
+			newFragment.focus();
+			return false;
 		}
 	}
 }

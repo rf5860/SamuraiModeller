@@ -13,7 +13,7 @@
 <%
 	}
 %>
-	<form name="registerUser" action="/createUser" method="POST" onSubmit="return validateForm()">
+	<form name="registerUser" action="/createUser" method="POST" onSubmit="return validateRegisterForm()">
 		<div>
 			<label for="userId">Login ID:</label>
 			<input style="margin-left: 79px" type="text" name="userId"/>
