@@ -40,6 +40,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/createUser</url-pattern>
 	</servlet-mapping>
+<!-- Commandeer Fragment -->
+	<servlet>
+		<servlet-name>CommandeerFragment</servlet-name>
+		<servlet-class>samurai.CommandeerFragment</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommandeerFragment</servlet-name>
+		<url-pattern>/commandeer</url-pattern>
+	</servlet-mapping>
 <!--  Welcome File -->
 	<welcome-file-list>
 		<welcome-file>samurai.jsp</welcome-file>

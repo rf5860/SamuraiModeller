@@ -12,8 +12,20 @@
 	<head>
 		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
 		<script type="text/javascript" src="scripts/validation.js"></script>
+		<script type="text/javascript">
+		function commandeer(fragName)
+		{
+			with (document.forms["commandeerFragment"]) {
+				fragmentName.value = fragName;
+				submit();
+			}
+		}
+		</script>
 	</head>
 	<body>
+<form name="commandeerFragment" action="/commandeer" method="post">
+	<input type="hidden" name="fragmentName">
+</form>
 <%
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -41,7 +53,7 @@
 <%
 			if ( user != null ) {
 %>
-		<td width="25%"><input type="button" name="<%= fragmentName %>" value="Commandeer"/></td>
+		<td width="25%"><input type="button" value="Commandeer" onClick="commandeer('<%= fragmentName %>')"/></td>
 <%
 			} else {
 %>
