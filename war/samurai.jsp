@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
 <%@ page import="com.google.appengine.api.datastore.Query" %>
@@ -52,6 +53,37 @@
 	for (Entity fragment : fragments) {
 		String fragmentName = (String)fragment.getProperty("fragmentName");
 		String holder = (String)fragment.getProperty("holder");
+		Date claimDate = (Date)fragment.getProperty("claimDate");
+		String dateDiff = "";
+		long diff;
+		if (claimDate != null) {
+			Date currDate = new Date();
+			diff = currDate.getTime() - claimDate.getTime();
+			long days    = diff / (1000 * 60 * 60 * 24);
+			long hours   = diff / (1000 * 60 * 60 ) % 24;
+			long minutes = diff / (1000 * 60) % 60;
+			long seconds = diff / (1000) % 60;
+			if (days == 1) {
+				dateDiff = "1 day ";
+			} else if (days > 0) {
+				dateDiff = Long.toString(days) + " days ";
+			}
+			if (hours == 1) {
+				dateDiff += "1 hour ";
+			} else if (hours > 0) {
+				dateDiff += Long.toString(hours) + " hours ";
+			}
+			if (minutes == 1) {
+				dateDiff += "1 minute ";
+			} else if (minutes > 0) {
+				dateDiff = Long.toString(minutes) + " minutes ";
+			}
+			if (seconds == 1) {
+				dateDiff += "1 second ";
+			} else if (seconds > 0) {
+				dateDiff += Long.toString(seconds) + " seconds ";
+			}
+		}
 %>
 	<tr>
 	<td width="25%"><%= fragmentName %></td>
@@ -59,7 +91,7 @@
 		if (holder == null) {
 %>
 		<td width="25%">Nobody</td>
-		<td width="25%">500 hours</td>
+		<td width="25%"><%= dateDiff %></td>
 <%
 			if ( user != null ) {
 %>
@@ -73,7 +105,7 @@
  		} else {
 %>
 		<td width="25%"><%= holder %></td>
-		<td width="25%">500 hours</td>
+		<td width="25%"><%= dateDiff %></td>
 <%
 			if (user != null) {
 				if (user.equals(holder)) {
