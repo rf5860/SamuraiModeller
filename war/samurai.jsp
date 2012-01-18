@@ -20,10 +20,20 @@
 				submit();
 			}
 		}
+		function release(fragName)
+		{
+			with (document.forms["releaseFragment"]) {
+				fragmentName.value = fragName;
+				submit();
+			}
+		}
 		</script>
 	</head>
 	<body>
 <form name="commandeerFragment" action="/commandeer" method="post">
+	<input type="hidden" name="fragmentName">
+</form>
+<form name="releaseFragment" action="/release" method="post">
 	<input type="hidden" name="fragmentName">
 </form>
 <%
@@ -68,7 +78,7 @@
 			if (user != null) {
 				if (user.equals(holder)) {
 %>
-					<td width="25%"><input type="button" name="<%= fragmentName %>" value="Release"/></td>
+					<td width="25%"><input type="button" name="<%= fragmentName %>" value="Release" onClick="release('<%= fragmentName %>')"/></td>
 <%
 				} else {
 %>

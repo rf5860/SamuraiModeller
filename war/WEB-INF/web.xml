@@ -49,6 +49,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>CommandeerFragment</servlet-name>
 		<url-pattern>/commandeer</url-pattern>
 	</servlet-mapping>
+<!-- Commandeer Fragment -->
+	<servlet>
+		<servlet-name>ReleaseFragment</servlet-name>
+		<servlet-class>samurai.ReleaseFragment</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReleaseFragment</servlet-name>
+		<url-pattern>/release</url-pattern>
+	</servlet-mapping>
 <!--  Welcome File -->
 	<welcome-file-list>
 		<welcome-file>samurai.jsp</welcome-file>
