@@ -36,6 +36,7 @@ public class ReleaseFragment extends HttpServlet {
 							// Free both the holder, and the claim date on the fragment.
 							fragment.removeProperty("holder");
 							fragment.removeProperty("claimDate");
+							datastore.put(fragment);
 						} else {
 							// User attempted to release a fragment they don't own.
 							log.log(Level.INFO, user + " attempted to release " + fragmentName + " they don't own.");
