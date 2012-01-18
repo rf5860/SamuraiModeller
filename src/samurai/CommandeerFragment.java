@@ -24,7 +24,7 @@ public class CommandeerFragment extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String user = (String) req.getSession().getAttribute("user");
 		if (user != null) {
-			String fragmentName = req.getParameter("newFragment");
+			String fragmentName = req.getParameter("fragmentName");
 			if ( Utility.notNullOrEmpty(fragmentName) ){			
 				Key fragmentKey = KeyFactory.createKey("Fragment", fragmentName);
 				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
