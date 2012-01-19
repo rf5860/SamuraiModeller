@@ -11,7 +11,7 @@
 
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
+		<link type="text/css" rel="stylesheet" href="http://members.iinet.net.au/~robert.foy/main.css"/>
 		<script type="text/javascript" src="scripts/validation.js"></script>
 		<script type="text/javascript">
 		function commandeer(fragName)
