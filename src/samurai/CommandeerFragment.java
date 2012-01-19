@@ -37,7 +37,14 @@ public class CommandeerFragment extends HttpServlet {
 						resp.sendRedirect("/samurai.jsp?fragment=ninja");
 					} else {
 						Date claimDate = new Date();
-						fragment.setProperty("holder", user);
+						Key userKey = KeyFactory.createKey("User", user);
+						Entity userEntity = datastore.get(userKey);
+						
+						String userName = (String) userEntity.getProperty("userName");
+						String email = (String) userEntity.getProperty("email");
+						
+						fragment.setProperty("holder", userName);
+						fragment.setProperty("email", email);
 						fragment.setProperty("claimDate", claimDate);
 						datastore.put(fragment);
 					}
