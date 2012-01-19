@@ -104,7 +104,7 @@
 			}
  		} else {
 %>
-		<td width="25%"><%= holder %></td>
+		<td width="25%"><%= fragment.getProperty("userName") %></td>
 		<td width="25%"><%= dateDiff %></td>
 <%
 			if (user != null) {
@@ -114,7 +114,7 @@
 <%
 				} else {
 %>
-					<td width="25%">Contact <%= holder %> at <%= fragment.getProperty("email") %> to request fragment.</td>
+					<td width="25%">Contact <%= fragment.getProperty("userName") %> at <%= fragment.getProperty("email") %> to request fragment.</td>
 <%
 				}
 			} else {

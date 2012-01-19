@@ -43,7 +43,8 @@ public class CommandeerFragment extends HttpServlet {
 						String userName = (String) userEntity.getProperty("userName");
 						String email = (String) userEntity.getProperty("email");
 						
-						fragment.setProperty("holder", userName);
+						fragment.setProperty("holder", user);
+						fragment.setProperty("userName", userName);
 						fragment.setProperty("email", email);
 						fragment.setProperty("claimDate", claimDate);
 						datastore.put(fragment);
