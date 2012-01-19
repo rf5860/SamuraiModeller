@@ -46,9 +46,6 @@
 	String user = (String) session.getAttribute("user");
 %>
 	<table border="2" width="1000">
-	<tr>
-		<th width="25%">Fragment</th><th width="25%">Held By</th><th width="25%">Time Held</th><th>Action</th>
-	</tr>
 <%
 	for (Entity fragment : fragments) {
 		String fragmentName = (String)fragment.getProperty("fragmentName");
@@ -56,6 +53,20 @@
 		Date claimDate = (Date)fragment.getProperty("claimDate");
 		String dateDiff = "";
 		long diff;
+		String cssClass;
+		if (holder == null) {
+			cssClass = "free";
+		} else {
+			cssClass = "owned";
+			if ( (user != null) && (! user.equals(holder) ) {
+				cssClass += "other";
+			}
+		}
+%>
+	<tr class="<%= cssClass%>">
+		<th width="25%">Fragment</th><th width="25%">Held By</th><th width="25%">Time Held</th><th>Action</th>
+	</tr>
+<%
 		if (claimDate != null) {
 			Date currDate = new Date();
 			diff = currDate.getTime() - claimDate.getTime();
