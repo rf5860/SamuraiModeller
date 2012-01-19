@@ -45,7 +45,7 @@
 	Iterable<Entity> fragments = datastore.prepare(queryFragment).asIterable();
 	String user = (String) session.getAttribute("user");
 %>
-	<table border="2" width="500">
+	<table border="2" width="1000">
 	<tr>
 		<th width="25%">Fragment</th><th width="25%">Held By</th><th width="25%">Time Held</th><th>Action</th>
 	</tr>
@@ -114,7 +114,7 @@
 <%
 				} else {
 %>
-					<td width="25%">Contact <%= holder%> at <%= fragment.getProperty("email") %> to request fragment.</td>
+					<td width="25%">Contact <%= fragment.getProperty("userName") %> ) at <%= fragment.getProperty("email") %> to request fragment.</td>
 <%
 				}
 			} else {
