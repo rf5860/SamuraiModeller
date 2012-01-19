@@ -76,7 +76,7 @@
 			if (minutes == 1) {
 				dateDiff += "1 minute ";
 			} else if (minutes > 0) {
-				dateDiff = Long.toString(minutes) + " minutes ";
+				dateDiff += Long.toString(minutes) + " minutes ";
 			}
 			if (seconds == 1) {
 				dateDiff += "1 second ";
